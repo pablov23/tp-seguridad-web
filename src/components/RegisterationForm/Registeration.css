@@ -1,0 +1,10 @@
+.registeration > h2 {
+    font-size: 1.5em;
+}
+
+.captcha-style {
+    display: block;
+    width: 80%;
+    overflow: hidden;
+    margin: 5px auto;
+}
