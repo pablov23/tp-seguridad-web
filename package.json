@@ -1,51 +1,33 @@
 {
-  "name": "exercise",
-  "version": "0.1.0",
-  "private": true,
-  "engines": {
-    "node": "10.3.0"
-  },
-  "jest": {
-    "coveragePathIgnorePatterns": [
-      "<rootDir>/src/serviceWorker.js",
-      "<rootDir>/src/index.js"
-    ]
-  },
-  "dependencies": {
-    "bulma": "0.7.4",
-    "formik": "1.5.4",
-    "formik-persist": "^1.1.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-google-recaptcha": "1.0.5",
-    "react-router-dom": "^5.0.0",
-    "react-scripts": "^3.4.1",
-    "react-toastify": "5.1.0"
-  },
+  "name": "one-placereact",
+  "version": "1.0.0",
+  "description": "One place react app",
+  "main": "server.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "test:coverage": "npm run test -- --coverage --watchAll=false",
-    "eject": "react-scripts eject"
+    "client-install": "cd client && npm install",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "author": "Krzysztof Zaleski",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "concurrently": "^6.3.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.17.2",
+    "mysql": "^2.18.1",
+    "passport": "^0.5.0",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "recharts": "^2.1.8"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.11.2",
-    "@testing-library/react": "^10.4.8"
+    "nodemon": "^2.0.15"
   }
 }
