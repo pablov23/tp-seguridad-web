@@ -1,0 +1,25 @@
+<!-- public/sitemap.xml -->
+<xml version="1.0" encoding="UTF-8">
+<urlset>
+    <url>
+        <loc>http://localhost:3000/orders</loc>
+        <lastmod>2023-11-06</lastmod>
+    </url>
+    <url>
+        <loc>http://localhost:3000/clients</loc>
+        <lastmod>2023-11-06</lastmod>
+    </url>
+    <url>
+        <loc>http://localhost:3000/calendar</loc>
+        <lastmod>2023-11-06</lastmod>
+    </url>
+    <url>
+        <loc>http://localhost:3000/adminPannel</loc>
+        <lastmod>2023-11-06</lastmod>
+    </url>
+    <url>
+        <loc>http://localhost:3000</loc>
+        <lastmod>2023-11-06</lastmod>
+    </url>
+</urlset>
+</xml>
