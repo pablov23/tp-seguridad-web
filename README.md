@@ -15,7 +15,7 @@
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/Zlvsky/One-place.git
+   git clone https://github.com/pablov23/tp-seguridad-web
    ```
 2. Install NPM packages in root folder and /client folder
    ```sh
