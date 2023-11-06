@@ -120,7 +120,7 @@ function Sidebar() {
         handleOnClick={handleSidebarCollapse}
         sidebarCollapse={sidebarCollapse}
       />
-      <SidebarSection ctx={ctx} sidebarCollapse={sidebarCollapse} />
+      {ctx && <SidebarSection ctx={ctx} sidebarCollapse={sidebarCollapse} />}
     </div>
   );
 }

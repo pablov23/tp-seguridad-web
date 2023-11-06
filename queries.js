@@ -1,10 +1,10 @@
 const { query } = require('express');
 var mysql = require('mysql');
 var connection = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: 'Policia23',
-  database: 'one_place',
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DATABASE,
   multipleStatements: true,
   timezone: 'utc'
 });
