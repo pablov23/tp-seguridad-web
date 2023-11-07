@@ -40,7 +40,7 @@ CREATE TABLE `accounts` (
 --
 
 INSERT INTO `accounts` (`id`, `username`, `password`, `role`, `dateCreated`) VALUES
-(1, 'admin', '$2b$10$J1JTnk4KtLylMznNjWlRsOKPvsDEYDX.xyP77EY/Gq1JpccSnr3qa', 'admin', '2022-10-25');
+(1, 'admin', '$2b$10$h9JkijFfYuxyRxQKCzWw6uMNO91Wjwwey5SoVkl3az2LzCfarZ9Zi', 'admin', '2022-10-25');
 
 -- --------------------------------------------------------
 
