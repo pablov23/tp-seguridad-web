@@ -67,7 +67,7 @@ app.use(bodyParser.json());
 // END OF CONFIGURING OPTIONS
 
 app.post('/login', passport.authenticate('local'), (req, res) => {
-  res.send("success")
+  res.send({ message: "success", user: req.user })
 });
 
 app.get('/logout', (req, res) => {

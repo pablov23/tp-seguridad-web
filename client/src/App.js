@@ -21,8 +21,7 @@ function App() {
     console.log(ctx)
     return (
       <BrowserRouter>
-        <Sidebar>
-          </Sidebar>
+        <Sidebar />
             <Routes>
               <Route path='/' exact element={
                   <PrivateRoute>
@@ -55,9 +54,7 @@ function App() {
                     </PrivateRoute>
                   } />
                 <Route path='/adminPannel' element={
-                    <AdminRoute>
                       <AdminPanel />
-                    </AdminRoute>
                   } />
               <Route path='/login' element={
                   <LoginRoute>

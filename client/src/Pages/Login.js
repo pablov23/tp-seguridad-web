@@ -11,7 +11,8 @@ export default function Login() {
       username,
       password
     }, {withCredentials: true}).then(res => {
-      if (res.data === 'success') {
+      if (res.data.message === 'success') {
+        // setCookie('isAdmin', res.data.user.role === "admin" );
         window.location.href = '/';
       }
     })

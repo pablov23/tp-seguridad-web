@@ -1,10 +1,12 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { AuthLoginInfo } from './AuthLogin';
 import { Navigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 import './Styles/loadingPage.css';
 
 function AdminRoute({ children }) {
   const user = useContext(AuthLoginInfo);
+  const [cookies] = useCookies(['isAdmin']);
   if(user === undefined) {
     return (
       <div className="loading-page-wrapper">
@@ -14,8 +16,8 @@ function AdminRoute({ children }) {
       </div>
     )
   }
-  // zrobić navigate z loginu kiedy jest sie zalogowanym
-  return user?.role === "admin" ? children : <Navigate to='/' /> ;
+
+  return cookies.isAdmin ? children : null ;
 
 }
 export default AdminRoute

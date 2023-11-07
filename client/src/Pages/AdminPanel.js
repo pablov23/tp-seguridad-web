@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Styles/adminPanel.css";
 import UsersSetting from "./../Components/AdminPanelComponents/UsersSetting";
-import ConfigureSetting from "./../Components/AdminPanelComponents/ConfigureSetting";
+import { AuthLoginInfo } from './../AuthComponents/AuthLogin';
+import { useCookies } from 'react-cookie';
 
 function AdminPanel() {
   const [selectedSetting, setSelectedSetting] = useState(0);
@@ -15,6 +16,18 @@ function AdminPanel() {
       component: "usersSetting",
     },
   ];
+
+  const user = useContext(AuthLoginInfo);
+  const [cookies] = useCookies(['isAdmin']);
+  if(user === undefined) {
+    return (
+      <div className="loading-page-wrapper">
+        <div className="loading-page">
+          <div className="spinner"></div>
+        </div>
+      </div>
+    )
+  }
 
   const CalendarWrap = (props) => {
     return (
@@ -64,10 +77,12 @@ function AdminPanel() {
 
   return (
     <div className="bodyWrap">
-      <CalendarWrap>
-        <AdminPanelNav />
-        <ContentWrap />
-      </CalendarWrap>
+      {cookies.isAdmin ? ( 
+        <CalendarWrap>
+          <AdminPanelNav />
+          <ContentWrap />
+        </CalendarWrap>
+      ) : (<>Hola</>)}
     </div>
   );
 }

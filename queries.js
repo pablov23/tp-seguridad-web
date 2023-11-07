@@ -50,7 +50,7 @@ function getOrdersById(orderId) {
 }
 
 function addNewOrder(orderDetails, clientId, totalCost, date) {
-  const queryString = "INSERT into orders VALUES ('', ?, ?, ?, ?, ?)";
+  const queryString = "INSERT into orders VALUES (NULL, ?, ?, ?, ?, ?)";
   const passedValues = [clientId, date, totalCost, orderDetails.status, orderDetails.worker];
   return new Promise((resolve, reject) => {
     connection.query(queryString, passedValues, function(error, results) {
@@ -156,7 +156,7 @@ function updateOrderById(totalCost, orderStatus, orderId) {
 }
 
 function addMultipleProducts(orderId, productsArray) {
-  const queryString = "INSERT into products VALUES('', ?, ?, ?, ?, ?)";
+  const queryString = "INSERT into products VALUES(NULL, ?, ?, ?, ?, ?)";
   const queryStringForCheck = "SELECT * from products where id = ?";
   return new Promise((resolve, reject) => {
     productsArray.forEach((product) => {
@@ -194,7 +194,7 @@ function deleteProductsById(deletedIds) {
 }
 
 function addNewClient(clientDetails) {
-  const queryString = "INSERT into clients VALUES ('', ?, ?, ?, ?, ?, ?, ?, ?)";
+  const queryString = "INSERT into clients VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)";
   const currentDate = new Date();
   const passedValues = [clientDetails.clientName, clientDetails.clientDetails, clientDetails.phone, clientDetails.country, clientDetails.street, clientDetails.city, clientDetails.postalCode, currentDate]
   return new Promise((resolve, reject) => {
@@ -225,7 +225,7 @@ function getDasboardData() {
 }
 
 function addNewEvent(eventData) {
-  const queryString = "INSERT into calendar values ('', ?, ?, ?, ?, ?, ?)";
+  const queryString = "INSERT into calendar values (NULL, ?, ?, ?, ?, ?, ?)";
   const passedValues = [eventData.title, eventData.details, eventData.deadlineDate, eventData.hours, eventData.addDate, eventData.worker];
   return new Promise((resolve, reject) => {
     connection.query(queryString, passedValues, function(error) {
@@ -265,7 +265,7 @@ function getUsersForAdminPanel() {
 }
 
 function createNewUser(userDetails, hashedPassword) {
-  const queryString = "INSERT into accounts VALUES ('', ?, ?, ?, ?)";
+  const queryString = "INSERT into accounts VALUES (NULL, ?, ?, ?, ?)";
   const currentDate = new Date();
   const passedValues = [userDetails.username, hashedPassword, userDetails.role, currentDate];
   return new Promise((resolve, reject) => {
