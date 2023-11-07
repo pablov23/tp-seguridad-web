@@ -13,6 +13,7 @@ function formatIsoDate(date) {
 function UsersSetting() {
   const [usersData, setUsersData] = useState();
   const [usersUpdated, setUsersUpdated] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
   const [popup, setPopup] = useState({
     show: false,
     id: null,
@@ -73,17 +74,41 @@ function UsersSetting() {
     );
   };
 
-  const UsersDataTable = (props) => {
-    const filteredUsers = usersData?.filter((user) => {
-      if (props.isAdmin) {
-        return user.role == "admin";
-      } else {
-        return user.role != "admin";
+  const handleSearch = () => {
+    axios
+    .get(`http://localhost:5000/getusers?username=${searchInput}`, { withCredentials: true })
+    .then((res) => {
+      if (res.data != null) {
+        setUsersData(res.data);
       }
     });
+  }
 
-    return filteredUsers != undefined ? (
-      filteredUsers?.map((user, index) => {
+  const handleClickChange = (e) => {
+    setSearchInput(e.target.value)
+  }
+
+  const SearchBar = () => (
+    <div className="addOrderWrap">
+      <input
+        type="text"
+        id="user-search"
+        placeholder="Buscar por username"
+        onChange={handleClickChange}
+        value={searchInput}
+      />
+      <button
+        className="addOrder"
+        onClick={handleSearch}
+      >
+        <span className="addOrderText">Search</span>
+      </button>
+    </div>
+  )
+
+  const UsersDataTable = (props) => {
+    return usersData ? (
+      usersData?.map((user, index) => {
         return (
           <tr key={user.id} className={index % 2 != 0 ? "darkerTableBg" : ""}>
             <td className="alignCenter">
@@ -91,6 +116,7 @@ function UsersSetting() {
             </td>
             <td>{user.username}</td>
             <td className="alignCenter">{formatIsoDate(user.dateCreated)}</td>
+            <td className="alignCenter">{user.role || 'normal'}</td>
             <td className="alignCenter">
               <DeleteForeverRoundedIcon
                 className="clickable"
@@ -107,41 +133,9 @@ function UsersSetting() {
     );
   };
 
-  const AdminUsers = () => {
-    return (
-      <div className="usersColumn">
-        <div className="usersInfo">
-          <h3 className="usersInfoHeader">Usuarios admin</h3>
-          <span className="usersInfoText">
-            Tienen acceso a todo el contenido y a todas las funcionalidades de la app.
-          </span>
-        </div>
-        <div className="adminUsersTable">
-          <table className="usersTable">
-            <thead>
-              <tr>
-                <th className="alignCenter"></th>
-                <th className="alignCenter">Nombre</th>
-                <th className="alignCenter">Fecha de creación</th>
-                <th className="alignCenter"></th>
-              </tr>
-            </thead>
-            <tbody>{<UsersDataTable isAdmin={true} />}</tbody>
-          </table>
-        </div>
-      </div>
-    );
-  };
-
   const NormalUsers = () => {
     return (
       <div className="usersColumn">
-        <div className="usersInfo">
-          <h3 className="usersInfoHeader">Usuarios cliente</h3>
-          <span className="usersInfoText">
-            Usuarios normales son clientes del banco.
-          </span>
-        </div>
         <div className="adminUsersTable">
           <table className="usersTable normalUsersTable">
             <thead>
@@ -149,10 +143,11 @@ function UsersSetting() {
                 <th className="alignCenter"></th>
                 <th className="alignCenter">Nombre</th>
                 <th className="alignCenter">Fecha de creación</th>
+                <th className="alignCenter">Role</th>
                 <th className="alignCenter"></th>
               </tr>
             </thead>
-            <tbody>{<UsersDataTable isAdmin={false} />}</tbody>
+            <tbody>{<UsersDataTable />}</tbody>
           </table>
         </div>
       </div>
@@ -300,10 +295,8 @@ function UsersSetting() {
   return (
     <div className="usersSettingWrap">
       <AddNewUserSection />
-
-      <AdminUsers />
+      <SearchBar />
       <NormalUsers />
-
       <HandleDeletePopup />
       <AddNewUserPopup />
     </div>

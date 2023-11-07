@@ -82,7 +82,7 @@ function AdminPanel() {
           <AdminPanelNav />
           <ContentWrap />
         </CalendarWrap>
-      ) : (<>Hola</>)}
+      ) : (<h1>No tiene permisos de administrador</h1>)}
     </div>
   );
 }
