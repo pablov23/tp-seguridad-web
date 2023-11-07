@@ -254,15 +254,12 @@ function deleteUserById(userId) {
 function getUsersForAdminPanel(username) {
   let queryString = "SELECT id, username, role, dateCreated from accounts";
 
-  const params = [];
-
   if (username !== null && username !== undefined) {
-    queryString += " WHERE username = ?";
-    params.push(username);
+    queryString += ` WHERE username = "${username}"`;
   }
 
   return new Promise((resolve, reject) => {
-    connection.query(queryString, params, function (error, result) {
+    connection.query(queryString, function (error, result) {
       if (error) {
         console.log(error);
         reject(error);

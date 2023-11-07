@@ -12,7 +12,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - db_data:/var/lib/mysql/data
+      - db_data:/var/lib/mysql
     networks:
       - custom_network
 
