@@ -234,6 +234,9 @@ app.get("/events", async (req, res) => {
 
 // GET USERS FOR ADMIN PANEL SECTION *
 app.get("/getusers", async (req, res) => {
+  if (!req.isAuthenticated()) {
+    res.send("user is not logged in")
+  }
   const username = req.query.username;
   const queryGetUsersForAdminPanel = await getUsersForAdminPanel(username);
   Promise.resolve(queryGetUsersForAdminPanel).then((results) => {
