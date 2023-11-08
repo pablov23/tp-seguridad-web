@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import Popup from "./../Popup";
 import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
@@ -14,6 +14,7 @@ function UsersSetting() {
   const [usersData, setUsersData] = useState();
   const [usersUpdated, setUsersUpdated] = useState(false);
   const [searchInput, setSearchInput] = useState("");
+  const inputRef = useRef(null);
   const [popup, setPopup] = useState({
     show: false,
     id: null,
@@ -76,7 +77,7 @@ function UsersSetting() {
 
   const handleSearch = () => {
     axios
-    .get(`http://localhost:5000/getusers?username=${searchInput}`, { withCredentials: true })
+    .get(`http://localhost:5000/getusers?username=${inputRef.current.value}`, { withCredentials: true })
     .then((res) => {
       if (res.data != null) {
         setUsersData(res.data);
@@ -84,18 +85,12 @@ function UsersSetting() {
     });
   }
 
-  const handleClickChange = (e) => {
-    setSearchInput(e.target.value)
-  }
-
-  const SearchBar = () => (
+  const SearchBar = () => {
+  return (
     <div className="addOrderWrap">
       <input
-        type="text"
-        id="user-search"
         placeholder="Buscar por username"
-        onChange={handleClickChange}
-        value={searchInput}
+        ref={inputRef}
       />
       <button
         className="addOrder"
@@ -105,6 +100,7 @@ function UsersSetting() {
       </button>
     </div>
   )
+  }
 
   const UsersDataTable = (props) => {
     return usersData ? (
