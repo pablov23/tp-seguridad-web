@@ -207,14 +207,18 @@ function addNewClient(clientDetails) {
   })
 }
 
-function getDasboardData() {
+function getDasboardData(username) {
   const queryString = `
   SELECT * from clients as clients;
   SELECT * from orders as orders;
-  SELECT * from calendar where deadlineDate >= curdate() and DATEDIFF(deadlineDate, CURDATE()) <= 5 order by deadlineDate asc limit 2
+  SELECT * from calendar where deadlineDate >= curdate() and DATEDIFF(deadlineDate, CURDATE()) <= 5 order by deadlineDate asc limit 2;
+  SELECT wallets.* FROM wallets 
+    JOIN wallet_x_account ON wallets.id = wallet_x_account.wallet_id 
+    JOIN accounts ON accounts.id = wallet_x_account.account_id
+    WHERE accounts.username = ?;
   `;
   return new Promise((resolve, reject) => {
-    connection.query(queryString, function (error, result) {
+    connection.query(queryString, username, function (error, result) {
       if (error) {
         console.log(error);
       } else {

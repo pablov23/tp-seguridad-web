@@ -206,7 +206,7 @@ app.get("/client_by_id", async (req, res) => {
 
 // DASHBOARD DATA SECTION *
 app.get("/dashboard_data", async (req,res) => {
-  const queryDashboardData = await getDasboardData();
+  const queryDashboardData = await getDasboardData(req.user.username);
   Promise.resolve(queryDashboardData).then((results) => {
     res.send(results);
   })
