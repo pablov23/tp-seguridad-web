@@ -41,6 +41,51 @@ CREATE TABLE `accounts` (
 
 INSERT INTO `accounts` (`id`, `username`, `password`, `role`, `dateCreated`) VALUES
 (1, 'admin', '$2b$10$h9JkijFfYuxyRxQKCzWw6uMNO91Wjwwey5SoVkl3az2LzCfarZ9Zi', 'admin', '2022-10-25');
+INSERT INTO `accounts` (`id`, `username`, `password`, `role`, `dateCreated`) VALUES
+(2, 'jorgeGonzalez', '$2b$10$h9JkijFfYuxyRxQKCzWw6uMNO91Wjwwey5SoVkl3az2LzCfarZ9Zi', 'user', '2022-10-25');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wallet`
+--
+
+CREATE TABLE `wallets` (
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `balance` decimal(15,2) DEFAULT NULL,
+  `number` text DEFAULT NULL,
+  `dateCreated` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `wallet`
+-- 
+
+INSERT INTO `wallets` (`id`, `balance`, `number`, `dateCreated`) VALUES
+(1, '19000.50', '89238124', '2022-10-25'),
+(2, '1566.20', '12512161', '2022-10-23'),
+(3, '177000.00', '25125122', '2022-10-21'),
+(4, '2700.00', '15161221', '2022-10-05');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wallet_x_account`
+--
+
+CREATE TABLE `wallet_x_account` (
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `account_id` int(11) NOT NULL,
+  `wallet_id` int(11) NOT NULL,
+  `dateCreated` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `wallet`
+--
+
+INSERT INTO `wallet_x_account` (`id`, `account_id`, `wallet_id`, `dateCreated`) VALUES
+(1, 2, 1, '2022-10-25');
 
 -- --------------------------------------------------------
 
