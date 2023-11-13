@@ -258,7 +258,7 @@ function deleteUserById(userId) {
 function getUsersForAdminPanel(username) {
   let queryString = "SELECT id, username, role, dateCreated from accounts";
 
-  if (username !== null && username !== undefined) {
+  if (!!username) {
     queryString += ` WHERE username = "${username}"`;
   }
 
