@@ -3,7 +3,6 @@ import axios from "axios";
 import "./Styles/homepage.css";
 import { AuthLoginInfo } from "./../AuthComponents/AuthLogin";
 import PaymentsRoundedIcon from "@mui/icons-material/PaymentsRounded";
-import { useNavigate, useRoutes } from "react-router-dom";
 
 const colors = [
   { background: '#D8F3DC', color: 'black' },
